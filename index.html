@@ -191,6 +191,7 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   .nav-link{font-size:0.42rem;padding:4px 5px;}
 }
 </style>
+
 </head>
 <body>
 <audio id="bg-music" loop preload="auto">
@@ -738,18 +739,21 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   onScroll();
 })();
 
-  const music = document.getElementById("bg-music");
+ const music = document.getElementById("bg-music");
 
-  // set volume LOW (mild)
-  music.volume = 0.8; // 🔥 change 0.1–0.3 for softness
+  // set soft volume
+  music.volume = 0.2;
 
-  // autoplay fix (required for browsers)
-  const playMusic = () => {
-    music.play().catch(() => {});
+  const startMusic = () => {
+    music.play().catch(err => {
+      console.log("Autoplay blocked:", err);
+    });
   };
 
-  document.addEventListener("click", playMusic, { once: true });
-  document.addEventListener("scroll", playMusic, { once: true });
+  // trigger on first interaction
+  document.addEventListener("click", startMusic, { once: true });
+  document.addEventListener("scroll", startMusic, { once: true });
+
 
 </script>
 </body>
