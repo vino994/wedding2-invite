@@ -193,7 +193,9 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
 </style>
 </head>
 <body>
-
+<audio id="bg-music" loop preload="auto">
+  <source src="marriage.mp3" type="audio/mpeg">
+</audio>
 <!-- NAV -->
 <nav id="main-nav">
   <a class="nav-link" href="#hero">Home</a>
@@ -735,6 +737,20 @@ footer::before{content:'';position:absolute;inset:0;background:radial-gradient(e
   window.addEventListener('scroll',onScroll,{passive:true});
   onScroll();
 })();
+
+  const music = document.getElementById("bg-music");
+
+  // set volume LOW (mild)
+  music.volume = 0.8; // 🔥 change 0.1–0.3 for softness
+
+  // autoplay fix (required for browsers)
+  const playMusic = () => {
+    music.play().catch(() => {});
+  };
+
+  document.addEventListener("click", playMusic, { once: true });
+  document.addEventListener("scroll", playMusic, { once: true });
+
 </script>
 </body>
 </html>
